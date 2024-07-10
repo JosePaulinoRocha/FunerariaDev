@@ -23,25 +23,25 @@
         <ion-label>
           <div class="income-details">
             <div class="income-column">
-              <h2><ion-icon name="calendar" slot="start"></ion-icon> Fecha: {{ income.date }}</h2>
-              <h2><ion-icon name="document" slot="start"></ion-icon> Concepto: {{ income.concept }}</h2>
-              <p><ion-icon name="business" slot="start"></ion-icon> Proveedor: {{ income.provider }}</p>
-              <p><ion-icon name="cash" slot="start"></ion-icon> Monto: {{ income.amount | currency }}</p>
-              <p><ion-icon name="layers" slot="start"></ion-icon> Segmento: {{ income.segment }}</p>
-              <p><ion-icon name="pricetag" slot="start"></ion-icon> Categoría: {{ income.category }}</p>
-              <p><ion-icon name="pricetags" slot="start"></ion-icon> Subcategoría: {{ income.subcategory }}</p>
-              <p><ion-icon name="clipboard" slot="start"></ion-icon> Descripción: {{ income.description }}</p>
+              <h2><ion-icon name="calendar" slot="start"></ion-icon> Fecha: {{ income.fecha }}</h2>
+              <h2><ion-icon name="document" slot="start"></ion-icon> Concepto: {{ income.nombreConcepto }}</h2>
+              <p><ion-icon name="business" slot="start"></ion-icon> Proveedor: {{ income.proveedor }}</p>
+              <p><ion-icon name="cash" slot="start"></ion-icon> Monto: {{ income.monto | currency }}</p>
+              <p><ion-icon name="layers" slot="start"></ion-icon> Segmento: {{ income.nombreSegmento }}</p>
+              <p><ion-icon name="pricetag" slot="start"></ion-icon> Categoría: {{ income.nombreCategoria }}</p>
+              <p><ion-icon name="pricetags" slot="start"></ion-icon> Subcategoría: {{ income.nombreSubcategoria }}</p>
+              <p><ion-icon name="clipboard" slot="start"></ion-icon> Descripción: {{ income.descripcion }}</p>
             </div>
             <div class="income-column">
-              <p><ion-icon name="cube" slot="start"></ion-icon> Piezas: {{ income.pieces }}</p>
-              <p><ion-icon name="construct" slot="start"></ion-icon> Tipo: {{ income.type }}</p>
-              <p><ion-icon name="wallet" slot="start"></ion-icon> Saldo: {{ income.balance | currency }}</p>
-              <p><ion-icon name="checkmark-done" slot="start"></ion-icon> Estado: {{ income.status }}</p>
-              <p><ion-icon name="calendar-clear" slot="start"></ion-icon> Fecha de Aprobación: {{ income.approvalDate }}</p>
-              <p><ion-icon name="person-circle" slot="start"></ion-icon> Usuario Autorizado: {{ income.authorizedUser }}</p>
-              <p><ion-icon name="person-add" slot="start"></ion-icon> Usuario Recibido: {{ income.receivedUser }}</p>
-              <p><ion-icon name="refresh" slot="start"></ion-icon> Fechas de Conciliación: {{ income.reconciliationDates.join(', ') }}</p>
-              <p><ion-icon name="chatbox-ellipses" slot="start"></ion-icon> Observaciones: {{ income.observations }}</p>
+              <p><ion-icon name="cube" slot="start"></ion-icon> Piezas: {{ income.piezas }}</p>
+              <p><ion-icon name="construct" slot="start"></ion-icon> Tipo: {{ income.cajaChica ? 'Caja Chica' : 'Normal' }}</p>
+              <p><ion-icon name="wallet" slot="start"></ion-icon> Saldo: {{ income.saldo | currency }}</p>
+              <p><ion-icon name="checkmark-done" slot="start"></ion-icon> Estado: {{ income.nombreEstatus }}</p>
+              <p><ion-icon name="calendar-clear" slot="start"></ion-icon> Fecha de Aprobación: {{ income.fechaAutorizacion }}</p>
+              <p><ion-icon name="person-circle" slot="start"></ion-icon> Usuario Autorizado: {{ income.usuarioAutorizaId }}</p>
+              <p><ion-icon name="person-add" slot="start"></ion-icon> Usuario Recibido: {{ income.usuarioRecibeId }}</p>
+              <p><ion-icon name="refresh" slot="start"></ion-icon> Fechas de Conciliación: {{ income.fechaConciliacion }}</p>
+              <p><ion-icon name="chatbox-ellipses" slot="start"></ion-icon> Observaciones: {{ income.observacionesDifConciliacion }}</p>
             </div>
           </div>
         </ion-label>
