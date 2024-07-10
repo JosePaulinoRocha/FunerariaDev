@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="welcome-container">
+    <h2>Bienvenido a la Funeraria App</h2>
+  </div>
+
+  <div class="card-container">
+    <ion-card (click)="navigateTo('ingresos')">
+      <ion-card-content>
+        <ion-icon color="primary" name="cash-outline" slot="start"></ion-icon>
+        <ion-card-title>Ingresos</ion-card-title>
+      </ion-card-content>  
+      <ion-card-content>
+        <p>Aquí puedes ver y gestionar los ingresos de la aplicación.</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="isAdmin" (click)="navigateTo('usuarios')">
+      <ion-card-content>
+        <ion-icon color="primary" name="people-outline" slot="start"></ion-icon>
+        <ion-card-title>Usuarios</ion-card-title>
+      </ion-card-content>
+      <ion-card-content>
+        <p>Esta sección permite dar de alta y gestionar usuarios.</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

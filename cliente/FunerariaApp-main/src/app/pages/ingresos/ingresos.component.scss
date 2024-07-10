@@ -1,0 +1,40 @@
+ion-item {
+  --inner-padding-end: 0;
+  ion-icon {
+    margin-right: 8px;
+  }
+  h2, p {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.income-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 16px;
+}
+
+.income-card {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #e0e0e0; /* Más oscuro para distinguir del fondo */
+  padding: 16px; /* Añadimos padding para que el contenido no quede pegado al borde */
+}
+
+.income-details {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .income-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .income-details {
+    grid-template-columns: 1fr 1fr;
+  }
+}

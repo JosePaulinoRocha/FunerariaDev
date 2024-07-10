@@ -1,0 +1,41 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 56px); /* Resta el tamaño del header */
+  background-image: url('milad-fakurian-wNsHBf_bTBo-unsplash.jpg');
+  background-size: cover; /* Cubrir todo el contenedor */
+  background-position: center; /* Centrar la imagen */
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+ion-item {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 15px;
+}
+
+ion-button {
+  width: 100%;
+  max-width: 400px;
+}
+
+ion-content {
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  overflow: hidden; /* Evita el desplazamiento vertical */
+}
+
+ion-input{
+  --background: #D4D4D4;
+  --border-radius: 8px;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  margin-bottom: 10px;
+}

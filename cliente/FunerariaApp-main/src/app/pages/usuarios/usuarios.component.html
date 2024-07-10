@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Usuarios</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openModal()">
+        <ion-icon name="add-circle-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchTerm" placeholder="Buscar usuario"></ion-searchbar>
+  <div class="user-list">
+    <div class="user-card" *ngFor="let user of filteredUsers()" (click)="openModal(user)">
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-icon name="person-circle" size="large" color="primary"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h2><ion-icon name="accessibility" slot="start"></ion-icon> Usuario ID: {{ user.userId }}</h2>
+          <h2><ion-icon name="person" slot="start"></ion-icon> Nombre: {{ user.fullName }}</h2>
+          <p><ion-icon name="mail" slot="start"></ion-icon> Correo: {{ user.email }}</p>
+          <p><ion-icon name="call" slot="start"></ion-icon> Teléfono: {{ user.phone }}</p>
+          <p *ngIf="user.isAdmin"><ion-icon name="shield-checkmark" slot="start"></ion-icon> Administrador</p>
+        </ion-label>
+      </ion-item>
+    </div>
+  </div>
+  <!-- <div style="display: inline-block; margin-right: 10px;">
+    <button type="button" mat-raised-button (click)="PruebaRequest()" class="BtnPrueba">Prueba</button>
+  </div> -->
+</ion-content>

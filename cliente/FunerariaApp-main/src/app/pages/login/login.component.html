@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Funeraria App</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding login-page">
+  <div class="login-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Iniciar Sesión</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <ion-item lines="none">
+            <ion-label style="margin-bottom: 0.8rem;" position="stacked">Correo Electrónico</ion-label>
+            <ion-input formControlName="email" type="email" required></ion-input>
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-label style="margin-bottom: 0.8rem;" position="stacked">Contraseña</ion-label>
+            <ion-input formControlName="password" type="password" required></ion-input>
+          </ion-item>
+
+          <ion-button expand="block" type="submit" [disabled]="!loginForm.valid" color="primary">Iniciar Sesión</ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
