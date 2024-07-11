@@ -2,26 +2,38 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ModalController, IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { IngresosServices } from 'src/app/Servicios/Ingresos.service';
 
-interface Income {
-  date: string;
-  segment: string;
-  category: string;
-  subcategory: string;
-  concept: string;
-  description: string;
-  provider: string;
-  pieces: number;
-  incomeType: string;
-  amount: number;
-  balance: number;
-  receipt: string;
-  status: string;
-  authDate: string;
-  authUser: string;
-  receivedBy: string;
-  reconciliationDate: string;
-  notes: string;
+interface Ingreso {
+  Fecha: string;
+  ConceptoId: number;
+  NombreConcepto: string;
+  Descripcion: string;
+  Proveedor: string;
+  Piezas: number;
+  CajaChica: boolean;
+  Monto: number;
+  Saldo: number;
+  Comprobante: string;
+  SegmentoId: number;
+  NombreSegmento: string;
+  CategoriaId: number;
+  NombreCategoria: string;
+  SubcategoriaId: number;
+  NombreSubcategoria: string;
+  EstatusComprobacionId: number;
+  NombreEstatus: string;
+  FechaAutorizacion: string;
+  UsuarioAutorizaId: number;
+  UsuarioRecibeId: number;
+  FechaConciliacion: string;
+  ObservacionesDifConciliacion: string;
+}
+
+interface Concepto {
+  ConceptoID: number;
+  Nombre: string;
 }
 
 @Component({
@@ -29,40 +41,59 @@ interface Income {
   templateUrl: './income-modal.component.html',
   styleUrls: ['./income-modal.component.scss'],
   standalone: true,
-  imports: [IonicModule, FormsModule, CommonModule],
+  imports: [IonicModule, FormsModule, CommonModule, HttpClientModule],
 })
 export class IncomeModalComponent implements OnInit {
-  @Input() income: Income = {
-    date: '',
-    segment: '',
-    category: '',
-    subcategory: '',
-    concept: '',
-    description: '',
-    provider: '',
-    pieces: 0,
-    incomeType: '',
-    amount: 0,
-    balance: 0,
-    receipt: '',
-    status: '',
-    authDate: '',
-    authUser: '',
-    receivedBy: '',
-    reconciliationDate: '',
-    notes: ''
+  @Input() ingreso: Ingreso = {
+    Fecha: '',
+    ConceptoId: 0,
+    NombreConcepto: '',
+    Descripcion: '',
+    Proveedor: '',
+    Piezas: 0,
+    CajaChica: false,
+    Monto: 0,
+    Saldo: 0,
+    Comprobante: '',
+    SegmentoId: 0,
+    NombreSegmento: '',
+    CategoriaId: 0,
+    NombreCategoria: '',
+    SubcategoriaId: 0,
+    NombreSubcategoria: '',
+    EstatusComprobacionId: 0,
+    NombreEstatus: '',
+    FechaAutorizacion: '',
+    UsuarioAutorizaId: 0,
+    UsuarioRecibeId: 0,
+    FechaConciliacion: '',
+    ObservacionesDifConciliacion: '',
   };
+
+  concepto: Concepto[] = [];
+  
   @Input() isEditMode: boolean = false;
 
-  constructor(private modalController: ModalController) {}
+  constructor(private modalController: ModalController, private _ingresoServ: IngresosServices) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loadConceptos();
+  }
+
+  loadConceptos() {
+    this._ingresoServ.getConceptos().subscribe((data: Concepto[]) => {
+      this.concepto = data;
+      console.log("esta es la data de Conceptos: ", data);
+    }, (error) => {
+      console.error('Error fetching incomes', error); 
+    });
+  }
 
   closeModal() {
     this.modalController.dismiss();
   }
 
   saveIncome() {
-    this.modalController.dismiss(this.income, this.isEditMode ? 'edit' : 'add');
+    this.modalController.dismiss(this.ingreso, this.isEditMode ? 'edit' : 'add');
   }
 }

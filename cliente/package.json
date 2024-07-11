@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@ng-select/ng-select": "^13.4.1",
     "@sweetalert2/themes": "^5.0.17"
   }
 }

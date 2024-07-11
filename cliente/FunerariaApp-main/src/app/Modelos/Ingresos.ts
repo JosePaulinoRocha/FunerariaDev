@@ -1,29 +1,31 @@
-// ingresos.model.ts
-
 export interface Ingreso {
-    ingresoId: number;
-    fecha: string;
-    conceptoId: number;
-    nombreConcepto: string;
-    descripcion: string;
-    proveedor: string;
-    piezas: number;
-    cajaChica: boolean;
-    monto: number;
-    saldo: number;
-    comprobante: string;
-    segmentoId: number;
-    nombreSegmento: string;
-    categoriaId: number;
-    nombreCategoria: string;
-    subcategoriaId: number;
-    nombreSubcategoria: string;
-    estatusComprobacionId: number;
-    nombreEstatus: string;
-    fechaAutorizacion: string;
-    usuarioAutorizaId: number;
-    usuarioRecibeId: number;
-    fechaConciliacion: string;
-    observacionesDifConciliacion: string;
-  }
-  
+  IngresoId: number;
+  Fecha: string;
+  ConceptoId: number;
+  NombreConcepto: string;
+  Descripcion: string;
+  Proveedor: string;
+  Piezas: number;
+  CajaChica: boolean;
+  Monto: number;
+  Saldo: number;
+  Comprobante: string;
+  SegmentoId: number;
+  NombreSegmento: string;
+  CategoriaId: number;
+  NombreCategoria: string;
+  SubcategoriaId: number;
+  NombreSubcategoria: string;
+  EstatusComprobacionId: number;
+  NombreEstatus: string;
+  FechaAutorizacion: string;
+  UsuarioAutorizaId: number;
+  UsuarioRecibeId: number;
+  FechaConciliacion: string;
+  ObservacionesDifConciliacion: string;
+}
+
+export interface Concepto {
+  ConceptoID: number;
+  Nombre: string;
+}

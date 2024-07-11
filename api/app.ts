@@ -3,8 +3,8 @@ import express, { Application } from 'express';
 import morgan from 'morgan';
 import path from 'path';
 
-
 import Usuarios from "./routes/Usuarios.routes"
+import Ingresos from "./routes/Ingresos.routes"
 
 
 
@@ -47,7 +47,7 @@ export class App {
     routes() {
        
         this.app.use('/api/usuarios', Usuarios);
-       
+        this.app.use('/api/ingresos', Ingresos);
 
 
         this.app.get('*',function (req,res){

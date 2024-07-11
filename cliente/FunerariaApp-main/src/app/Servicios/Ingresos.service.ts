@@ -1,4 +1,4 @@
-import { Ingreso } from '../Modelos/Ingresos';
+import { Ingreso, Concepto } from '../Modelos/Ingresos';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -14,12 +14,18 @@ export class IngresosServices {
   private MyApiUrlIngresoPost: string;
   private MyApiUrlIngresoUpdate: string;
 
+  private MyApiUrlConcepto: string;
+
+
   constructor(private http: HttpClient) {
     this.myAppUrl = environment.endpoint;
-    this.MyApiUrl = 'api/usuarios/';
-    this.MyApiUrlIngreso = 'GetUsuarios/';
+    this.MyApiUrl = 'api/ingresos/';
+    this.MyApiUrlIngreso = 'GetIngresos/';
     this.MyApiUrlIngresoPost = 'PostIngresos/';
     this.MyApiUrlIngresoUpdate = 'UpdateIngreso/';
+
+    this.MyApiUrlConcepto = 'GetConceptos/';
+
 
   }
 
@@ -33,6 +39,10 @@ export class IngresosServices {
 
   updateIngreso(user: any): Observable<any> {
     return this.http.put<Ingreso[]>(`${this.myAppUrl}${this.MyApiUrl}${this.MyApiUrlIngresoUpdate}`, user);
+  }
+
+  getConceptos(): Observable<Concepto[]> {
+    return this.http.get<Concepto[]>(`${this.myAppUrl}${this.MyApiUrl}${this.MyApiUrlConcepto}`);
   }
 
 }

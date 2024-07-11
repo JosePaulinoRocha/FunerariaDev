@@ -14,61 +14,64 @@
     <ion-grid>
       <ion-row>
         <ion-col size-md="6">
-          <ion-item style="margin-top: 16px;">
+
+          <ion-item>
+            <ion-label position="stacked">Concepto</ion-label>
+            <ion-select [(ngModel)]="ingreso.ConceptoId" name="concepto" required interface="alert" searchbar="true">
+              <ion-select-option *ngFor="let item of concepto" [value]="item.ConceptoID">{{ item.Nombre }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
             <ion-label position="stacked">Fecha</ion-label>
-            <ion-datetime display-format="MM/DD/YYYY" [(ngModel)]="income.date" name="date" required></ion-datetime>
+            <ion-datetime display-format="MM/DD/YYYY" [(ngModel)]="ingreso.Fecha" name="fecha" required></ion-datetime>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Segmento</ion-label>
-            <ion-select [(ngModel)]="income.segment" name="segment" required>
-              <ion-select-option value="Segmento 1">Segmento 1</ion-select-option>
-              <ion-select-option value="Segmento 2">Segmento 2</ion-select-option>
+            <ion-select [(ngModel)]="ingreso.SegmentoId" name="segmento" required interface="alert" searchbar="true">
+              <ion-select-option value="1">Segmento 1</ion-select-option>
+              <ion-select-option value="2">Segmento 2</ion-select-option>
             </ion-select>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Categoría</ion-label>
-            <ion-select [(ngModel)]="income.category" name="category" required>
-              <ion-select-option value="Categoría 1">Categoría 1</ion-select-option>
-              <ion-select-option value="Categoría 2">Categoría 2</ion-select-option>
+            <ion-select [(ngModel)]="ingreso.CategoriaId" name="categoria" required interface="alert" searchbar="true">
+              <ion-select-option value="1">Categoría 1</ion-select-option>
+              <ion-select-option value="2">Categoría 2</ion-select-option>
             </ion-select>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Subcategoría</ion-label>
-            <ion-select [(ngModel)]="income.subcategory" name="subcategory" required>
-              <ion-select-option value="Subcategoría 1">Subcategoría 1</ion-select-option>
-              <ion-select-option value="Subcategoría 2">Subcategoría 2</ion-select-option>
+            <ion-select [(ngModel)]="ingreso.SubcategoriaId" name="subcategoria" required interface="alert" searchbar="true">
+              <ion-select-option value="1">Subcategoría 1</ion-select-option>
+              <ion-select-option value="2">Subcategoría 2</ion-select-option>
             </ion-select>
           </ion-item>
 
           <ion-item>
-            <ion-label position="stacked">Concepto</ion-label>
-            <ion-input [(ngModel)]="income.concept" name="concept" required></ion-input>
-          </ion-item>
-
-          <ion-item>
             <ion-label position="stacked">Proveedor</ion-label>
-            <ion-input [(ngModel)]="income.provider" name="provider" required></ion-input>
+            <ion-input [(ngModel)]="ingreso.Proveedor" name="proveedor" required></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Tipo de Ingreso</ion-label>
-            <ion-select [(ngModel)]="income.incomeType" name="incomeType" required>
-              <ion-select-option value="Caja Chica">Caja Chica</ion-select-option>
-              <ion-select-option value="Cuenta Bancaria">Cuenta Bancaria</ion-select-option>
+            <ion-select [(ngModel)]="ingreso.CajaChica" name="cajaChica" required interface="alert" searchbar="true">
+              <ion-select-option value="true">Caja Chica</ion-select-option>
+              <ion-select-option value="false">Cuenta Bancaria</ion-select-option>
             </ion-select>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Monto</ion-label>
-            <ion-input [(ngModel)]="income.amount" name="amount" type="number" required></ion-input>
+            <ion-input [(ngModel)]="ingreso.Monto" name="monto" type="number" required></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Fecha de Conciliación</ion-label>
-            <ion-datetime display-format="MM/DD/YYYY" [(ngModel)]="income.reconciliationDate" name="reconciliationDate" required></ion-datetime>
+            <ion-datetime display-format="MM/DD/YYYY" [(ngModel)]="ingreso.FechaConciliacion" name="fechaConciliacion" required></ion-datetime>
           </ion-item>
           
         </ion-col>
@@ -76,54 +79,50 @@
         <ion-col size-md="6">
           <ion-item>
             <ion-label position="stacked">Descripción</ion-label>
-            <ion-input [(ngModel)]="income.description" name="description" required></ion-input>
+            <ion-input [(ngModel)]="ingreso.Descripcion" name="descripcion" required></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Piezas</ion-label>
-            <ion-input [(ngModel)]="income.pieces" name="pieces" type="number" required></ion-input>
+            <ion-input [(ngModel)]="ingreso.Piezas" name="piezas" type="number" required></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Saldo</ion-label>
-            <ion-input [(ngModel)]="income.balance" name="balance" type="number" required></ion-input>
+            <ion-input [(ngModel)]="ingreso.Saldo" name="saldo" type="number" required></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Recibo</ion-label>
-            <ion-input [(ngModel)]="income.receipt" name="receipt" required></ion-input>
+            <ion-input [(ngModel)]="ingreso.Comprobante" name="comprobante" required></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Estado</ion-label>
-            <ion-select [(ngModel)]="income.status" name="status" required>
-              <ion-select-option value="Validado">Validado</ion-select-option>
-              <ion-select-option value="Manual">Manual</ion-select-option>
+            <ion-select [(ngModel)]="ingreso.EstatusComprobacionId" name="estatus" required interface="alert" searchbar="true">
+              <ion-select-option value="1">Validado</ion-select-option>
+              <ion-select-option value="2">Manual</ion-select-option>
             </ion-select>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Fecha de Autorización</ion-label>
-            <ion-datetime display-format="MM/DD/YYYY" [(ngModel)]="income.authDate" name="authDate" required></ion-datetime>
+            <ion-datetime display-format="MM/DD/YYYY" [(ngModel)]="ingreso.FechaAutorizacion" name="fechaAutorizacion" required></ion-datetime>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Usuario que Autorizó</ion-label>
-            <ion-input [(ngModel)]="income.authUser" name="authUser" required></ion-input>
+            <ion-input [(ngModel)]="ingreso.UsuarioAutorizaId" name="usuarioAutorizaId" required></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Recibido por</ion-label>
-            <ion-input [(ngModel)]="income.receivedBy" name="receivedBy" required></ion-input>
+            <ion-input [(ngModel)]="ingreso.UsuarioRecibeId" name="usuarioRecibeId" required></ion-input>
           </ion-item>
-        </ion-col>
-      </ion-row>
 
-      <ion-row>
-        <ion-col size="12">
           <ion-item>
             <ion-label position="stacked">Notas</ion-label>
-            <ion-textarea rows="4" [(ngModel)]="income.notes" name="notes" required></ion-textarea>
+            <ion-textarea rows="4" [(ngModel)]="ingreso.ObservacionesDifConciliacion" name="observacionesDifConciliacion" required></ion-textarea>
           </ion-item>
         </ion-col>
       </ion-row>

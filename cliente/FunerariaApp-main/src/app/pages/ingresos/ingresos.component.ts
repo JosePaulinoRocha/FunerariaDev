@@ -7,30 +7,30 @@ import { HttpClientModule } from '@angular/common/http';
 import { IngresosServices } from 'src/app/Servicios/Ingresos.service';
 
 interface Income {
-  ingresoId: number;
-  fecha: string;
-  conceptoId: number;
-  nombreConcepto: string;
-  descripcion: string;
-  proveedor: string;
-  piezas: number;
-  cajaChica: boolean;
-  monto: number;
-  saldo: number;
-  comprobante: string;
-  segmentoId: number;
-  nombreSegmento: string;
-  categoriaId: number;
-  nombreCategoria: string;
-  subcategoriaId: number;
-  nombreSubcategoria: string;
-  estatusComprobacionId: number;
-  nombreEstatus: string;
-  fechaAutorizacion: string;
-  usuarioAutorizaId: number;
-  usuarioRecibeId: number;
-  fechaConciliacion: string;
-  observacionesDifConciliacion: string;
+  IngresoId: number;
+  Fecha: string;
+  ConceptoId: number;
+  NombreConcepto: string;
+  Descripcion: string;
+  Proveedor: string;
+  Piezas: number;
+  CajaChica: boolean;
+  Monto: number;
+  Saldo: number;
+  Comprobante: string;
+  SegmentoId: number;
+  NombreSegmento: string;
+  CategoriaId: number;
+  NombreCategoria: string;
+  SubcategoriaId: number;
+  NombreSubcategoria: string;
+  EstatusComprobacionId: number;
+  NombreEstatus: string;
+  FechaAutorizacion: string;
+  UsuarioAutorizaId: number;
+  UsuarioRecibeId: number;
+  FechaConciliacion: string;
+  ObservacionesDifConciliacion: string;
 }
 
 @Component({
@@ -55,15 +55,32 @@ export class IngresosComponent implements OnInit {
       this.incomes = data;
       console.log("esta es la data de ingresos: ", data);
     }, (error) => {
-      console.error('Error fetching incomes', error);
+      console.error('Error fetching incomes', error); 
     });
   }
 
   filteredIncomes(): Income[] {
     return this.incomes.filter(income => {
       const searchTermLower = this.searchTerm.toLowerCase();
+      const NombreConcepto = income.NombreConcepto ? income.NombreConcepto.toLowerCase() : '';
+      const Proveedor = income.Proveedor ? income.Proveedor.toLowerCase() : '';
+      const Descripcion = income.Descripcion ? income.Descripcion.toLowerCase() : '';
+      const NombreSegmento = income.NombreSegmento ? income.NombreSegmento.toLowerCase() : '';
+      const NombreCategoria = income.NombreCategoria ? income.NombreCategoria.toLowerCase() : '';
+      const NombreSubcategoria = income.NombreSubcategoria ? income.NombreSubcategoria.toLowerCase() : '';
+      const NombreEstatus = income.NombreEstatus ? income.NombreEstatus.toLowerCase() : '';
+
       return (
-        income.nombreConcepto.toLowerCase().includes(searchTermLower)
+        NombreConcepto.includes(searchTermLower) ||
+        Proveedor.includes(searchTermLower) ||
+        Descripcion.includes(searchTermLower) ||
+        NombreSegmento.includes(searchTermLower) ||
+        NombreCategoria.includes(searchTermLower) ||
+        NombreSubcategoria.includes(searchTermLower) ||
+        NombreEstatus.includes(searchTermLower) ||
+        income.Fecha.includes(this.searchTerm) ||
+        income.Monto.toString().includes(this.searchTerm) ||
+        income.Saldo.toString().includes(this.searchTerm)
       );
     });
   }
@@ -87,30 +104,30 @@ export class IngresosComponent implements OnInit {
 
   getDefaultIncome(): Income {
     return {
-      ingresoId: 0,
-      fecha: '',
-      conceptoId: 0,
-      nombreConcepto: '',
-      descripcion: '',
-      proveedor: '',
-      piezas: 0,
-      cajaChica: false,
-      monto: 0,
-      saldo: 0,
-      comprobante: '',
-      segmentoId: 0,
-      nombreSegmento: '',
-      categoriaId: 0,
-      nombreCategoria: '',
-      subcategoriaId: 0,
-      nombreSubcategoria: '',
-      estatusComprobacionId: 0,
-      nombreEstatus: '',
-      fechaAutorizacion: '',
-      usuarioAutorizaId: 0,
-      usuarioRecibeId: 0,
-      fechaConciliacion: '',
-      observacionesDifConciliacion: '',
+      IngresoId: 0,
+      Fecha: '',
+      ConceptoId: 0,
+      NombreConcepto: '',
+      Descripcion: '',
+      Proveedor: '',
+      Piezas: 0,
+      CajaChica: false,
+      Monto: 0,
+      Saldo: 0,
+      Comprobante: '',
+      SegmentoId: 0,
+      NombreSegmento: '',
+      CategoriaId: 0,
+      NombreCategoria: '',
+      SubcategoriaId: 0,
+      NombreSubcategoria: '',
+      EstatusComprobacionId: 0,
+      NombreEstatus: '',
+      FechaAutorizacion: '',
+      UsuarioAutorizaId: 0,
+      UsuarioRecibeId: 0,
+      FechaConciliacion: '',
+      ObservacionesDifConciliacion: '',
     };
   }
 }
