@@ -41,6 +41,7 @@ export class UserModalComponent implements OnInit {
     if (this.isEditMode) {
       this.userService.updateUser(this.user).subscribe(response => {
         console.log('User updated:', response);
+        console.log("estos son los datos: ", this.user)
         this.modalController.dismiss(this.user, 'edit');
       }, error => {
         console.error('Error updating user:', error);
@@ -48,6 +49,7 @@ export class UserModalComponent implements OnInit {
     } else {
       this.userService.addUser(this.user).subscribe(response => {
         console.log('User added:', response);
+        console.log("estos son los datos: ", this.user)
         this.modalController.dismiss(this.user, 'add');
       }, error => {
         console.error('Error adding user:', error);

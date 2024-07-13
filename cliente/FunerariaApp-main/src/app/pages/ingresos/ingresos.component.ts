@@ -7,9 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { IngresosServices } from 'src/app/Servicios/Ingresos.service';
 
 interface Income {
-  IngresoId: number;
+  IngresoID: number;
   Fecha: string;
-  ConceptoId: number;
+  ConceptoID: number;
   NombreConcepto: string;
   Descripcion: string;
   Proveedor: string;
@@ -18,17 +18,17 @@ interface Income {
   Monto: number;
   Saldo: number;
   Comprobante: string;
-  SegmentoId: number;
+  SegmentoID: number;
   NombreSegmento: string;
-  CategoriaId: number;
+  CategoriaID: number;
   NombreCategoria: string;
-  SubcategoriaId: number;
+  SubcategoriaID: number;
   NombreSubcategoria: string;
-  EstatusComprobacionId: number;
+  EstatusComprobacionID: number;
   NombreEstatus: string;
   FechaAutorizacion: string;
-  UsuarioAutorizaId: number;
-  UsuarioRecibeId: number;
+  UsuarioAutorizaID: number;
+  UsuarioRecibeID: number;
   FechaConciliacion: string;
   ObservacionesDifConciliacion: string;
 }
@@ -52,12 +52,18 @@ export class IngresosComponent implements OnInit {
 
   loadIngresos() {
     this._ingresoServ.getIngresos().subscribe((data: Income[]) => {
-      this.incomes = data;
-      console.log("esta es la data de ingresos: ", data);
+      this.incomes = data.map(income => ({
+        ...income,
+        Fecha: new Date(income.Fecha).toISOString().split('T')[0], // Formatear la fecha
+        FechaAutorizacion: new Date(income.FechaAutorizacion).toISOString().split('T')[0], // Formatear la fecha
+        FechaConciliacion: new Date(income.FechaConciliacion).toISOString().split('T')[0] // Formatear la fecha
+      }));
+      console.log("esta es la data de ingresos: ", this.incomes);
     }, (error) => {
       console.error('Error fetching incomes', error); 
     });
   }
+  
 
   filteredIncomes(): Income[] {
     return this.incomes.filter(income => {
@@ -89,24 +95,32 @@ export class IngresosComponent implements OnInit {
     const modal = await this.modalController.create({
       component: IncomeModalComponent,
       componentProps: {
-        income: income || this.getDefaultIncome()
+        ingreso: income ? { ...income } : this.getEmptyIncome(),
+        isEditMode: !!income
+      }
+  });
+  
+    modal.onDidDismiss().then((result) => {
+      if (result.data) {
+        if (result.role === 'add') {
+          this.incomes.push(result.data);
+        } else if (result.role === 'edit') {
+          const index = this.incomes.findIndex(i => i.IngresoID === result.data.IngresoID);
+          if (index !== -1) {
+            this.incomes[index] = result.data;
+          }
+        }
       }
     });
-
-    modal.onDidDismiss().then((data) => {
-      if (data.data) {
-        this.loadIngresos();
-      }
-    });
-
+  
     return await modal.present();
   }
-
-  getDefaultIncome(): Income {
+  
+  getEmptyIncome(): Income {
     return {
-      IngresoId: 0,
+      IngresoID: 0,
       Fecha: '',
-      ConceptoId: 0,
+      ConceptoID: 0,
       NombreConcepto: '',
       Descripcion: '',
       Proveedor: '',
@@ -115,19 +129,19 @@ export class IngresosComponent implements OnInit {
       Monto: 0,
       Saldo: 0,
       Comprobante: '',
-      SegmentoId: 0,
+      SegmentoID: 0,
       NombreSegmento: '',
-      CategoriaId: 0,
+      CategoriaID: 0,
       NombreCategoria: '',
-      SubcategoriaId: 0,
+      SubcategoriaID: 0,
       NombreSubcategoria: '',
-      EstatusComprobacionId: 0,
+      EstatusComprobacionID: 0,
       NombreEstatus: '',
       FechaAutorizacion: '',
-      UsuarioAutorizaId: 0,
-      UsuarioRecibeId: 0,
+      UsuarioAutorizaID: 0,
+      UsuarioRecibeID: 0,
       FechaConciliacion: '',
-      ObservacionesDifConciliacion: '',
+      ObservacionesDifConciliacion: ''
     };
   }
 }

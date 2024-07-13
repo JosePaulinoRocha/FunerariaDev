@@ -1,7 +1,7 @@
 export interface Ingreso {
-  IngresoId: number;
+  IngresoID: number;
   Fecha: string;
-  ConceptoId: number;
+  ConceptoID: number;
   NombreConcepto: string;
   Descripcion: string;
   Proveedor: string;
@@ -10,17 +10,17 @@ export interface Ingreso {
   Monto: number;
   Saldo: number;
   Comprobante: string;
-  SegmentoId: number;
+  SegmentoID: number;
   NombreSegmento: string;
-  CategoriaId: number;
+  CategoriaID: number;
   NombreCategoria: string;
-  SubcategoriaId: number;
+  SubcategoriaID: number;
   NombreSubcategoria: string;
-  EstatusComprobacionId: number;
+  EstatusComprobacionID: number;
   NombreEstatus: string;
   FechaAutorizacion: string;
-  UsuarioAutorizaId: number;
-  UsuarioRecibeId: number;
+  UsuarioAutorizaID: number;
+  UsuarioRecibeID: number;
   FechaConciliacion: string;
   ObservacionesDifConciliacion: string;
 }
@@ -28,4 +28,42 @@ export interface Ingreso {
 export interface Concepto {
   ConceptoID: number;
   Nombre: string;
+}
+
+export interface Segmento {
+  SegmentoID: number;
+  Nombre: string;
+}
+
+export interface Categoria {
+  CategoriaID: number;
+  Nombre: string;
+}
+
+export interface Subcategoria {
+  SubcategoriaID: number;
+  Nombre: string;
+}
+
+export interface Usuario {
+  userId: number;
+  fullName: string;
+  phone: string;
+  email: string;
+  isAdmin: boolean;
+  password: string;
+}
+
+export interface Combinacion {
+  CombinacionID: number;
+  ConceptoID: number;
+  SegmentoID: number;
+  CategoriaID: number;
+  SubcategoriaID: number;
+}
+
+
+export interface Estatus {
+  EstatusID: number;
+  Descripcion: string;
 }

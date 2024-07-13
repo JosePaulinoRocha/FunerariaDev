@@ -17,7 +17,7 @@
 
           <ion-item>
             <ion-label position="stacked">Concepto</ion-label>
-            <ion-select [(ngModel)]="ingreso.ConceptoId" name="concepto" required interface="alert" searchbar="true">
+            <ion-select [(ngModel)]="ingreso.ConceptoID" name="concepto" required interface="alert" searchbar="true" (ionChange)="updateCombinations()">
               <ion-select-option *ngFor="let item of concepto" [value]="item.ConceptoID">{{ item.Nombre }}</ion-select-option>
             </ion-select>
           </ion-item>
@@ -29,25 +29,22 @@
 
           <ion-item>
             <ion-label position="stacked">Segmento</ion-label>
-            <ion-select [(ngModel)]="ingreso.SegmentoId" name="segmento" required interface="alert" searchbar="true">
-              <ion-select-option value="1">Segmento 1</ion-select-option>
-              <ion-select-option value="2">Segmento 2</ion-select-option>
+            <ion-select [(ngModel)]="ingreso.SegmentoID" name="segmento" required interface="alert" searchbar="true">
+              <ion-select-option *ngFor="let item of segmento" [value]="item.SegmentoID">{{ item.Nombre }}</ion-select-option>
             </ion-select>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Categoría</ion-label>
-            <ion-select [(ngModel)]="ingreso.CategoriaId" name="categoria" required interface="alert" searchbar="true">
-              <ion-select-option value="1">Categoría 1</ion-select-option>
-              <ion-select-option value="2">Categoría 2</ion-select-option>
+            <ion-select [(ngModel)]="ingreso.CategoriaID" name="categoria" required interface="alert" searchbar="true">
+              <ion-select-option *ngFor="let item of categoria" [value]="item.CategoriaID">{{ item.Nombre }}</ion-select-option>
             </ion-select>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Subcategoría</ion-label>
-            <ion-select [(ngModel)]="ingreso.SubcategoriaId" name="subcategoria" required interface="alert" searchbar="true">
-              <ion-select-option value="1">Subcategoría 1</ion-select-option>
-              <ion-select-option value="2">Subcategoría 2</ion-select-option>
+            <ion-select [(ngModel)]="ingreso.SubcategoriaID" name="subcategoria" required interface="alert" searchbar="true">
+              <ion-select-option *ngFor="let item of subcategoria" [value]="item.SubcategoriaID">{{ item.Nombre }}</ion-select-option>
             </ion-select>
           </ion-item>
 
@@ -59,8 +56,8 @@
           <ion-item>
             <ion-label position="stacked">Tipo de Ingreso</ion-label>
             <ion-select [(ngModel)]="ingreso.CajaChica" name="cajaChica" required interface="alert" searchbar="true">
-              <ion-select-option value="true">Caja Chica</ion-select-option>
-              <ion-select-option value="false">Cuenta Bancaria</ion-select-option>
+              <ion-select-option [value]="true">Caja Chica</ion-select-option>
+              <ion-select-option [value]="false">Cuenta Bancaria</ion-select-option>
             </ion-select>
           </ion-item>
 
@@ -99,9 +96,8 @@
 
           <ion-item>
             <ion-label position="stacked">Estado</ion-label>
-            <ion-select [(ngModel)]="ingreso.EstatusComprobacionId" name="estatus" required interface="alert" searchbar="true">
-              <ion-select-option value="1">Validado</ion-select-option>
-              <ion-select-option value="2">Manual</ion-select-option>
+            <ion-select [(ngModel)]="ingreso.EstatusComprobacionID" name="estatus" required interface="alert" searchbar="true">
+              <ion-select-option *ngFor="let item of estatus" [value]="item.EstatusID">{{ item.Descripcion }}</ion-select-option>
             </ion-select>
           </ion-item>
 
@@ -112,12 +108,16 @@
 
           <ion-item>
             <ion-label position="stacked">Usuario que Autorizó</ion-label>
-            <ion-input [(ngModel)]="ingreso.UsuarioAutorizaId" name="usuarioAutorizaId" required></ion-input>
+            <ion-select [(ngModel)]="ingreso.UsuarioAutorizaID" name="usuarioAutorizaId" required interface="alert" searchbar="true">
+              <ion-select-option *ngFor="let item of usuario" [value]="item.userId">{{ item.fullName }}</ion-select-option>
+            </ion-select>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Recibido por</ion-label>
-            <ion-input [(ngModel)]="ingreso.UsuarioRecibeId" name="usuarioRecibeId" required></ion-input>
+            <ion-select [(ngModel)]="ingreso.UsuarioRecibeID" name="usuarioRecibeId" required interface="alert" searchbar="true">
+              <ion-select-option *ngFor="let item of usuario" [value]="item.userId">{{ item.fullName }}</ion-select-option>
+            </ion-select>
           </ion-item>
 
           <ion-item>
