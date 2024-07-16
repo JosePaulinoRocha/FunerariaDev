@@ -20,7 +20,9 @@ export interface Ingreso {
   NombreEstatus: string;
   FechaAutorizacion: string;
   UsuarioAutorizaID: number;
+  NombreUsuarioAutoriza: string;
   UsuarioRecibeID: number;
+  NombreUsuarioRecibe: string;
   FechaConciliacion: string;
   ObservacionesDifConciliacion: string;
 }

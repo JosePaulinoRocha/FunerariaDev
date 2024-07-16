@@ -23,6 +23,11 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'ingresos-egresos',
+    loadComponent: () => import('./pages/ingresos-egresos/ingresos-egresos.component').then((m) => m.IngresosEgresosComponent),
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'gallery',
     loadComponent: () => import('./pages/gallery/gallery.component').then((m) => m.GalleryComponent),
     canActivate: [AuthGuard],

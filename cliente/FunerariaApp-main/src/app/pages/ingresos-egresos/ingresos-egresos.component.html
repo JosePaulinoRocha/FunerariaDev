@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Ingresos / Egresos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Search Interface -->
+  <div class="search-container">
+    <ion-item>
+      <ion-label>Buscar por:</ion-label>
+      <ion-select [(ngModel)]="selectedField" placeholder="Seleccionar campo">
+        <ion-select-option *ngFor="let field of searchFields" [value]="field.value">{{ field.label }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <div *ngIf="selectedField">
+      <ion-item *ngIf="!isDateField(selectedField)">
+        <ion-label>Valor:</ion-label>
+        <ion-input [(ngModel)]="searchText"></ion-input>
+      </ion-item>
+    
+      <div *ngIf="isDateField(selectedField)">
+        <ion-item>
+          <ion-label>Desde:</ion-label>
+          <input type="date" [(ngModel)]="dateSearch.startDate">
+        </ion-item>
+        <ion-item>
+          <ion-label>Hasta:</ion-label>
+          <input type="date" [(ngModel)]="dateSearch.endDate">
+        </ion-item>
+      </div>
+    
+      <ion-button (click)="applySearch()">Buscar</ion-button>
+      <ion-button color="light" (click)="resetSearch()">Reset</ion-button>
+    </div>
+    
+  </div>
+
+  
+  <div class="table-container">
+    <table class="table">
+      <thead class="header-row">
+        <tr>
+          <th>Ingreso ID</th>
+          <th><span style="margin-left: 2rem;"></span> Fecha <span style="margin-left: 2rem;"></span></th>
+          <th><span style="margin-left: 10rem;"></span> Concepto <span style="margin-left: 10rem;"></span></th>
+          <th><span style="margin-left: 10rem;"></span>Descripcion<span style="margin-left: 10rem;"></span></th>
+          <th><span style="margin-left: 3rem;"></span>Proveedor<span style="margin-left: 3rem;"></span></th>
+          <th>Piezas</th>
+          <th><span style="margin-left: 2rem;"></span>Tipo de ingreso<span style="margin-left: 2rem;"></span></th>
+          <th>Monto</th>
+          <th>Saldo</th>
+          <th><span style="margin-left: 1rem;"></span>Comprobante<span style="margin-left: 1rem;"></span></th>
+          <th><span style="margin-left: 2rem;"></span>Segmento<span style="margin-left: 2rem;"></span></th>
+          <th><span style="margin-left: 3rem;"></span>Categoria<span style="margin-left: 3rem;"></span></th>
+          <th><span style="margin-left: 3rem;"></span>Subcategoria<span style="margin-left: 3rem;"></span></th>
+          <th><span style="margin-left: 4rem;"></span>Estatus<span style="margin-left: 4rem;"></span></th>
+          <th>Fecha Autorizacion</th>
+          <th>Usuario Autoriza</th>
+          <th>Usuario Recibe</th>
+          <th>Fecha Conciliacion</th>
+          <th><span style="margin-left: 6rem;"></span>Observaciones<span style="margin-left: 6rem;"></span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let income of paginatedIncomes" class="data-row">
+          <td>{{ income.IngresoID }}</td>
+          <td>{{ income.Fecha }}</td>
+          <td>{{ income.NombreConcepto }}</td>
+          <td>{{ income.Descripcion }}</td>
+          <td>{{ income.Proveedor }}</td>
+          <td>{{ income.Piezas }}</td>
+          <td [ngClass]="{'green-text': true}">
+            {{ income.CajaChica ? 'Caja Chica' : 'Cuenta Bancaria' }}
+          </td>
+          <td>{{ income.Monto }}</td>
+          <td>{{ income.Saldo }}</td>
+          <td>{{ income.Comprobante }}</td>
+          <td>{{ income.NombreSegmento }}</td>
+          <td>{{ income.NombreCategoria }}</td>
+          <td>{{ income.NombreSubcategoria }}</td>
+          <td>{{ income.NombreEstatus }}</td>
+          <td>{{ income.FechaAutorizacion }}</td>
+          <td>{{ income.NombreUsuarioAutoriza }}</td>
+          <td>{{ income.NombreUsuarioRecibe }}</td>
+          <td>{{ income.FechaConciliacion }}</td>
+          <td>{{ income.ObservacionesDifConciliacion }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ion-footer class="margin_footer">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button (click)="prevPage()" [disabled]="currentPage === 1">Anterior</ion-button>
+        <ion-button (click)="nextPage()" [disabled]="currentPage === totalPages">Siguiente</ion-button>
+      </ion-buttons>
+      <div class="page-info">
+        Página {{ currentPage }} de {{ totalPages }}
+      </div>
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>

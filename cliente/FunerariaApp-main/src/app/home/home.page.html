@@ -23,6 +23,16 @@
       </ion-card-content>
     </ion-card>
 
+    <ion-card (click)="navigateTo('ingresos-egresos')">
+      <ion-card-content>
+        <ion-icon color="primary" name="cash-outline" slot="start"></ion-icon>
+        <ion-card-title>Ingresos/Egresos</ion-card-title>
+      </ion-card-content>  
+      <ion-card-content>
+        <p>Aquí puedes ver la lista de ingresos y egresos en formato de tabla.</p>
+      </ion-card-content>
+    </ion-card>
+
     <ion-card *ngIf="isAdmin" (click)="navigateTo('usuarios')">
       <ion-card-content>
         <ion-icon color="primary" name="people-outline" slot="start"></ion-icon>
